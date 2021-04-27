@@ -1,36 +1,27 @@
-package com.example.scrollscrollapp.adapter
+package com.example.scrollscrollapp.ui.pagetwo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.scrollscrollapp.data.Produk
 import com.example.scrollscrollapp.databinding.ItemProdukBinding
-import com.example.scrollscrollapp.model.Produk
 
-class ProdukAdapter(private val list: MutableList<Produk>):
-    RecyclerView.Adapter<ProdukAdapter.ViewHolder>() {
+class PageTwoAdapter(private val list: MutableList<Produk>) :
+    RecyclerView.Adapter<PageTwoAdapter.ViewHolder>() {
+    lateinit var listener: PageTwoRecyclerViewClickListener
 
-    private var onItemClickCallback: OnItemClickCallback? = null
-
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
-    }
-
-    inner class ViewHolder(private val binding: ItemProdukBinding):RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(private val binding: ItemProdukBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(produk: Produk) {
-            with(binding){
+            with(binding) {
                 civProduk.load(produk.image)
                 mtvTitle.text = produk.title
                 mtvDesc.text = produk.miniDesc
-
-                itemView.setOnClickListener { onItemClickCallback?.onItemClicked(produk) }
             }
         }
     }
 
-    interface OnItemClickCallback {
-        fun onItemClicked(data: Produk)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -44,6 +35,10 @@ class ProdukAdapter(private val list: MutableList<Produk>):
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(list[position])
+
+        holder.itemView.setOnClickListener {
+            listener.onItemClicked(list[position])
+        }
     }
 
     override fun getItemCount(): Int = list.size

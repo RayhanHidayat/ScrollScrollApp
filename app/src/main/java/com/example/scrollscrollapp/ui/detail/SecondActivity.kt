@@ -1,10 +1,10 @@
-package com.example.scrollscrollapp
+package com.example.scrollscrollapp.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import coil.load
 import com.example.scrollscrollapp.databinding.ActivitySecondBinding
-import com.example.scrollscrollapp.model.Produk
+import com.example.scrollscrollapp.data.Produk
 
 class SecondActivity : AppCompatActivity() {
 

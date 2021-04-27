@@ -1,4 +1,4 @@
-package com.example.scrollscrollapp.model
+package com.example.scrollscrollapp.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

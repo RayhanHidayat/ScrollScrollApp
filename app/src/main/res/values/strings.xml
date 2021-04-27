@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ScrollScrollApp</string>
+    <string name="pagone">Page One</string>
+    <string name="pagetwo">Page Two</string>
 </resources>
